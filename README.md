@@ -1,6 +1,6 @@
 # KongUserBundle
 
-A tool to make it easier to implement the [Kong CE]((https://docs.konghq.com) solution on a Symfony project
+A tool to make it easier to implement the [Kong CE](https://docs.konghq.com) solution on a Symfony project
 
 ## Dependencies
 
