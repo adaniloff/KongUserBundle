@@ -5,8 +5,8 @@ services:
         public: false
 
     Adaniloff\KongUserBundle\:
-        resource: '../../../../../src/Adaniloff/KongUserBundle/*'
-        exclude: '../../../../../src/Adaniloff/KongUserBundle/Entity'
+        resource: '../../../../../vendor/adaniloff/kong-user-bundle/*'
+        exclude: '../../../../../vendor/adaniloff/kong-user-bundle/{Entity}'
 
     Adaniloff\KongUserBundle\Service\KongApi:
         arguments:
