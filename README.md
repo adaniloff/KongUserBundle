@@ -1,6 +1,6 @@
 # KongUserBundle
 
-A tool to make it easier to implement the kong solution on a Symfony project
+A tool to make it easier to implement the [Kong CE]((https://docs.konghq.com) solution on a Symfony project
 
 ## Dependencies
 
@@ -59,3 +59,13 @@ security:
 
 
 ```
+
+## Example 
+
+If you're already all good with your Kong installation, you should now be able to make the following requests :
+
+```
+curl -i -X GET --url http://localhost:8000/ --header 'Host: my.custom.server.com' -H 'Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l'
+```
+
+This Basic Authentication request is from the [Kong documentation](https://docs.konghq.com/plugins/basic-authentication)
