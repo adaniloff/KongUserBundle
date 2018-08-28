@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Adaniloff\KongUserBundle\:
+        resource: '../../../../../src/Adaniloff/KongUserBundle/*'
+        exclude: '../../../../../src/Adaniloff/KongUserBundle/Entity'
+
+    Adaniloff\KongUserBundle\Service\KongApi:
+        arguments:
+            - '@eight_points_guzzle.client.api_kong'

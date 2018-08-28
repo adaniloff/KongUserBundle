@@ -1,0 +1,22 @@
+{
+    "name": "adaniloff/kong-user-bundle",
+    "description": "A little package to help you integrate the Kong solution.",
+    "type": "package",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Adaniloff\\KongUserBundle\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "Aleksandr Daniloff",
+            "email": "adaniloff.dev@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1",
+        "symfony/symfony": "3.4.*",
+        "eightpoints/guzzle-bundle": "^7.2"
+    }
+}
