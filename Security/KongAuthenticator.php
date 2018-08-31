@@ -103,9 +103,9 @@ class KongAuthenticator extends AbstractGuardAuthenticator
      */
     public function start(Request $request, AuthenticationException $authException = null)
     {
-        $data = array(
+        $data = [
             'message' => 'Authentication Required'
-        );
+        ];
 
         return new JsonResponse($data, Response::HTTP_UNAUTHORIZED);
     }

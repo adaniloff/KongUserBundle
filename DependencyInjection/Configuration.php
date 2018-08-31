@@ -20,9 +20,29 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('adaniloff_kong_user');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->children()
+                ->scalarNode('kong_host')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                    ->defaultValue('http://127.0.0.1:8001')
+                    ->info('The kong host you want to hit.')
+                ->end()
+                ->arrayNode('auth')
+                    ->cannotBeEmpty()
+                    ->isRequired()
+                    ->children()
+                        ->enumNode('type')
+                            ->values(\Adaniloff\KongUserBundle\Service\Configuration::AUTH_TYPES)
+                            ->defaultValue(\Adaniloff\KongUserBundle\Service\Configuration::AUTH_TYPE_BASIC)
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                            ->info('The auth type you want to use.')
+                        ->end()
+                    ->end()
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }

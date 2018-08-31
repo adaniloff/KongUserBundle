@@ -10,4 +10,11 @@ services:
 
     Adaniloff\KongUserBundle\Service\KongApi:
         arguments:
+            - "@kong_user.service.configuration"
             - '@eight_points_guzzle.client.api_kong'
+
+    kong_user.service.configuration:
+        class: Adaniloff\KongUserBundle\Service\Configuration
+        autowire: false
+        arguments:
+            - '%kong_user.config%'
