@@ -4,8 +4,6 @@ A tool to make it easier to implement the [Kong CE](https://docs.konghq.com) sol
 
 > This package is still under development and is far from being fully operationnal
 
-> It is not available on packagist yet.
-
 ## Dependencies
 
 - PHP >= 7.1
