@@ -2,6 +2,8 @@
 
 A tool to make it easier to implement the [Kong CE](https://docs.konghq.com) solution on a Symfony project
 
+> This package is still under development and is far from being fully operationnal
+
 ## Dependencies
 
 - PHP >= 7.1
@@ -10,39 +12,38 @@ A tool to make it easier to implement the [Kong CE](https://docs.konghq.com) sol
 
 ## Installation
 
-> This repository is not on packagist yet.
 
 You'll be able to get the package with the following command `composer require adaniloff/kong-user-bundle`.
 
 Then follow these steps: 
 
 ```php
+<?php
 /** In AppKernel */
 $bundles = [
-            // add the following line
-            new \Adaniloff\KongUserBundle\AdaniloffKongUserBundle(),
-        ];
+    // add the following line
+    new \Adaniloff\KongUserBundle\AdaniloffKongUserBundle(),
+];
 ```
 
 Configure a guzzle client: 
 
-```
+```yaml
 # in app/config/config.yml
 eight_points_guzzle:
     clients:
         api_kong:
-            # The admin base url, port included
-            base_url: 'http://localhost:8001/'
+            # The admin base url, port included ; it will be defined later
+            base_url: '%kong_user.host%'
             options:
                 headers:
                     Accept: 'application/json'
                     Content-type: 'application/json'
-
 ```
 
-Finally, update your security config:
+Update your security config:
 
-```
+```yaml
 # in app/config/security.yml
 security:
     providers:
@@ -52,13 +53,13 @@ security:
 
     firewalls:
         main:
-            # add this authenticator 
             guard:
+                # add this authenticator 
                 authenticators:
                     - Adaniloff\KongUserBundle\Security\KongAuthenticator
-
-
 ```
+
+Then, make a good usage of `php bin/console config:dump-reference` to help you to finish the configuration !
 
 ## Example 
 
