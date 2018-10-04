@@ -46,6 +46,43 @@ class KongHeaderBag
      */
     public function getGroups(): ?array
     {
-        return (array)$this->request->headers->get(self::HEADER_GROUPS, null);
+        return array_map(
+            'trim',
+            explode(',', $this->request->headers->get(self::HEADER_GROUPS, null))
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function getUserRoles(): array
+    {
+        return $this->filterGroupsByKey('role:');
+    }
+
+    /**
+     * @return array
+     */
+    public function getUserGroups(): array
+    {
+        return $this->filterGroupsByKey('group:');
+    }
+
+    /**
+     * @param string $key
+     * @return array
+     */
+    private function filterGroupsByKey($key): array
+    {
+        $filteredGroups = [];
+
+        foreach ($this->getGroups() as $group) {
+            if (0 === strpos($group, $key)) {
+                list(,$value) = explode($key, $group);
+                $filteredGroups[] = $value;
+            }
+        }
+
+        return $filteredGroups;
     }
 }
