@@ -4,6 +4,7 @@ namespace Adaniloff\KongUserBundle\Service;
 
 /** Usages */
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 /**
  * Class KongApi
@@ -31,7 +32,13 @@ class KongApi
      */
     public function getConsumer(string $username): ?\stdClass
     {
-        $response = $this->client->get("/consumers/$username");
+        try {
+            $response = $this->client->get("/consumers/$username");
+        } catch (RequestException $exception) {
+            error_log($exception->getMessage());
+
+            return null;
+        }
 
         return json_decode($response->getBody()->getContents());
     }
