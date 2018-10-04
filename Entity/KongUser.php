@@ -12,6 +12,8 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
  */
 class KongUser implements UserInterface, EquatableInterface
 {
+    const ROLE_DEFAULT = "ROLE_KONG_DEFAULT";
+
     /**
      * @var string
      */

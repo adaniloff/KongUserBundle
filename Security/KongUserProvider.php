@@ -82,7 +82,7 @@ class KongUserProvider implements UserProviderInterface
                 $username,
                 null,
                 null,
-                [],
+                [KongUser::ROLE_DEFAULT],
                 $this->bag->getGroups()
             );
 
