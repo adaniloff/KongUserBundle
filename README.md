@@ -89,5 +89,5 @@ curl -i -X GET --url http://localhost:8000/ --header 'Host: my.custom.server.com
 curl -i -X GET --url http://localhost:8000/ --header 'Host: my.custom.server.com' -H 'Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l'
 ```
 
-This Basic Authentication request is from the [Kong documentation](https://docs.konghq.com/hub/kong-inc/basic-auth/)
-This Key Authentication request is from the [Kong documentation](https://docs.konghq.com/hub/kong-inc/key-auth/)
+This Basic Authentication request is from the [Kong documentation](https://docs.konghq.com/hub/kong-inc/basic-auth/)  
+This Key Authentication request is from the [Kong documentation](https://docs.konghq.com/hub/kong-inc/key-auth/)  
