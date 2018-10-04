@@ -13,23 +13,16 @@ use GuzzleHttp\Exception\RequestException;
 class KongApi
 {
     /**
-     * @var Configuration
-     */
-    private $config;
-
-    /**
      * @var Client
      */
     private $client;
 
     /**
      * KongApi constructor.
-     * @param Configuration $config
      * @param Client $client
      */
-    public function __construct(Configuration $config, Client $client)
+    public function __construct(Client $client)
     {
-        $this->config = $config;
         $this->client = $client;
     }
 
@@ -39,18 +32,14 @@ class KongApi
      */
     public function getConsumer(string $username): ?\stdClass
     {
-        /** @var string $type */
-        $type = $this->config->getAuthType();
-
         try {
-            $response = $this->client->get("/$type/$username/consumer");
+            $response = $this->client->get("/consumers/$username");
         } catch (RequestException $exception) {
             error_log($exception->getMessage());
 
             return null;
         }
 
-        /** @var \stdClass $content */
         return json_decode($response->getBody()->getContents());
     }
 }

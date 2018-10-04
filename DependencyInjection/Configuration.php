@@ -34,7 +34,7 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->enumNode('type')
                             ->values(\Adaniloff\KongUserBundle\Service\Configuration::AUTH_TYPES)
-                            ->defaultValue(\Adaniloff\KongUserBundle\Service\Configuration::AUTH_TYPE_BASIC)
+                            ->defaultValue(\Adaniloff\KongUserBundle\Service\Configuration::AUTH_TYPE_KEY)
                             ->isRequired()
                             ->cannotBeEmpty()
                             ->info('The auth type you want to use.')

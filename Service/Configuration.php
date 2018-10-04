@@ -11,7 +11,7 @@ namespace Adaniloff\KongUserBundle\Service;
 class Configuration
 {
     const AUTH_TYPE_BASIC = 'basic-auths';
-    const AUTH_TYPE_KEY   = 'key';
+    const AUTH_TYPE_KEY   = 'key-auths';
 
     const AUTH_TYPES = [
         self::AUTH_TYPE_BASIC,
