@@ -28,7 +28,7 @@ class KongAuthenticator extends AbstractGuardAuthenticator
         /**
          * @todo anonymous users support
          */
-        return $request->headers->has(KongHeaderBag::HEADER_CREDENTIAL_USERNAME);
+        return $request->headers->has(KongHeaderBag::HEADER_CONSUMER_USERNAME);
     }
 
     /**
@@ -41,7 +41,7 @@ class KongAuthenticator extends AbstractGuardAuthenticator
          * @todo anonymous users support
          */
         return [
-            'username' => $request->headers->get(KongHeaderBag::HEADER_CREDENTIAL_USERNAME),
+            'username' => $request->headers->get(KongHeaderBag::HEADER_CONSUMER_USERNAME),
         ];
     }
 
