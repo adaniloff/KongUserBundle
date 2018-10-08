@@ -48,24 +48,36 @@ class KongHeaderBag
     {
         return array_map(
             'trim',
-            explode(',', $this->request->headers->get(self::HEADER_GROUPS, null))
+            explode(',', $this->get(self::HEADER_GROUPS))
         );
     }
 
     /**
-     * @return array
+     * @return null|array
      */
-    public function getUserRoles(): array
+    public function getUserRoles(): ?array
     {
-        return $this->filterGroupsByKey('role:');
+        $groups = $this->filterGroupsByKey('role:');
+
+        if (!count($groups)) {
+            return null;
+        }
+
+        return $groups;
     }
 
     /**
-     * @return array
+     * @return null|array
      */
-    public function getUserGroups(): array
+    public function getUserGroups(): ?array
     {
-        return $this->filterGroupsByKey('group:');
+        $groups = $this->filterGroupsByKey('group:');
+
+        if (!count($groups)) {
+            return null;
+        }
+
+        return $groups;
     }
 
     /**
