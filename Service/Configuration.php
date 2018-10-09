@@ -77,11 +77,27 @@ class Configuration
     }
 
     /**
-     * @return string
+     * @return array
      */
     public function getHost()
     {
         return $this->get('kong_host');
+    }
+
+    /**
+     * @return string
+     */
+    public function getHostUrl()
+    {
+        return $this->getHost()['url'];
+    }
+
+    /**
+     * @return string
+     */
+    public function getHostPrefix()
+    {
+        return $this->getHost()['prefix'];
     }
 
     /**
