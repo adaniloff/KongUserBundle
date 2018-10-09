@@ -23,7 +23,7 @@ class AdaniloffKongUserExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter("kong_user.config", $config);
-        $container->setParameter("kong_user.host", $config['kong_host']);
+        $container->setParameter("kong_user.host", $config['kong_host']['url']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

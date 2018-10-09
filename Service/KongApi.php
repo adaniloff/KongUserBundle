@@ -18,12 +18,19 @@ class KongApi
     private $client;
 
     /**
+     * @var Configuration
+     */
+    private $configuration;
+
+    /**
      * KongApi constructor.
      * @param Client $client
+     * @param Configuration $configuration
      */
-    public function __construct(Client $client)
+    public function __construct(Client $client, Configuration $configuration)
     {
-        $this->client = $client;
+        $this->client        = $client;
+        $this->configuration = $configuration;
     }
 
     /**
@@ -33,7 +40,7 @@ class KongApi
     public function getConsumer(string $username): ?\stdClass
     {
         try {
-            $response = $this->client->get("/consumers/$username");
+            $response = $this->client->get($this->configuration->getHostPrefix() . "/consumers/$username");
         } catch (RequestException $exception) {
             error_log($exception->getMessage());
 
