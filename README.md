@@ -2,8 +2,6 @@
 
 A tool to make it easier to implement the [Kong CE](https://docs.konghq.com) solution on a Symfony project
 
-> This package is still under development and is far from being fully operationnal
-
 ## Dependencies
 
 - PHP >= 7.1
@@ -11,7 +9,6 @@ A tool to make it easier to implement the [Kong CE](https://docs.konghq.com) sol
 - Guzzle Client ^7.2
 
 ## Installation
-
 
 You'll be able to get the package with the following command `composer require adaniloff/kong-user-bundle`.
 
@@ -59,7 +56,17 @@ security:
                     - Adaniloff\KongUserBundle\Security\KongAuthenticator
 ```
 
-Then, make a good usage of `php bin/console config:dump-reference` to help you to finish the configuration !
+And add the bundle default configuration: 
+
+```yaml
+adaniloff_kong_user:
+    kong_host:
+        url: "http://localhost:8000"
+    auth:
+        type: "key-auths"
+```
+
+You can make a good usage of `php bin/console config:dump-reference adaniloff_kong_user` to understand the configuration !
 
 ## Example 
 
@@ -82,12 +89,15 @@ Let's say you have the following Kong configuration :
 Then you should be able to make the following requests :
 
 ```
-# Key Auth request
-curl -i -X GET --url http://localhost:8000/ --header 'Host: my.custom.server.com' -H 'apikey: ZRJuTVjbMqZK67A0T4BbJAgrqVNgOQaP'
+# Key Auth request, with an auth key defined as "x-apikey"
+curl -i -X GET --url http://localhost:8000/ --header 'Host: my.custom.server.com' -H 'x-apikey: ZRJuTVjbMqZK67A0T4BbJAgrqVNgOQaP'
 
 # Basic Auth request
 curl -i -X GET --url http://localhost:8000/ --header 'Host: my.custom.server.com' -H 'Authorization: Basic QWxhZGRpbjpPcGVuU2VzYW1l'
 ```
 
-This Basic Authentication request is from the [Kong documentation](https://docs.konghq.com/hub/kong-inc/basic-auth/)  
-This Key Authentication request is from the [Kong documentation](https://docs.konghq.com/hub/kong-inc/key-auth/)  
+## See also ... 
+
+* Learn more about the [basic auth plugin](https://docs.konghq.com/hub/kong-inc/basic-auth/)  
+* Learn more about the [key auth plugin](https://docs.konghq.com/hub/kong-inc/key-auth/) 
+

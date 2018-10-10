@@ -33,8 +33,6 @@ class Configuration implements ConfigurationInterface
                             ->info('The kong host url you want to hit.')
                         ->end()
                         ->scalarNode('prefix')
-                            ->defaultValue('')
-                            ->cannotBeEmpty()
                             ->info('Some suffix to append to your host url.')
                         ->end()
                     ->end()
