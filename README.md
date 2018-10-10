@@ -59,7 +59,17 @@ security:
                     - Adaniloff\KongUserBundle\Security\KongAuthenticator
 ```
 
-Then, make a good usage of `php bin/console config:dump-reference` to help you to finish the configuration !
+And add the bundle default configuration: 
+
+```yaml
+adaniloff_kong_user:
+    kong_host:
+        url: "http://localhost:8000"
+    auth:
+        type: "key-auths"
+```
+
+You can make a good usage of `php bin/console config:dump-reference adaniloff_kong_user` to understand the configuration !
 
 ## Example 
 
