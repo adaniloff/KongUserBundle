@@ -38,6 +38,10 @@ class KongHeaderBag
      */
     public function get(string $header): ?string
     {
+        if (!$this->request) {
+            return null;
+        }
+        
         return $this->request->headers->get($header, null);
     }
 
