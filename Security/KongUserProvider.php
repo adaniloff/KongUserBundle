@@ -77,7 +77,9 @@ class KongUserProvider implements UserProviderInterface
      */
     private function fetchUser($username): KongUser
     {
-        if ($this->api->getConsumer($username)) {
+        $consumer = $this->api->shouldFetchConsumer() ?: $this->api->getConsumer($username);
+
+        if ($consumer) {
             $user = new KongUser(
                 $username,
                 null,

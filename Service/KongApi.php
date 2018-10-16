@@ -34,6 +34,14 @@ class KongApi
     }
 
     /**
+     * @return bool
+     */
+    public function shouldFetchConsumer(): bool
+    {
+        return false === $this->configuration->has('auth');
+    }
+
+    /**
      * @param string $username
      * @return \stdClass|null
      */
