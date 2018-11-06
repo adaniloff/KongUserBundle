@@ -23,7 +23,6 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->arrayNode('kong_host')
-                    ->cannotBeEmpty()
                     ->isRequired()
                     ->children()
                         ->scalarNode('url')
@@ -39,7 +38,6 @@ class Configuration implements ConfigurationInterface
                 ->end()
                 ->arrayNode('auth')
                     ->info('Leave it to null to disable auth checking.')
-                    ->cannotBeEmpty()
                     ->children()
                         ->enumNode('type')
                             ->values(\Adaniloff\KongUserBundle\Service\Configuration::AUTH_TYPES)
