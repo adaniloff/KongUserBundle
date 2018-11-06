@@ -5,12 +5,72 @@ A tool to make it easier to implement the [Kong CE](https://docs.konghq.com) sol
 ## Dependencies
 
 - PHP >= 7.1
-- Symfony 3.4.*
-- Guzzle Client ^7.2
+- Symfony ^3.4||^4.1
+- Guzzle Client 7.2.*
 
 ## Installation
 
 You'll be able to get the package with the following command `composer require adaniloff/kong-user-bundle`.
+
+#### Symfony 4.1
+
+Then follow these steps: 
+
+```php
+<?php
+/** In config/bundles.php */
+return [
+    // add the following lines, in that order
+    Adaniloff\KongUserBundle\AdaniloffKongUserBundle::class => ['all' => true],
+    EightPoints\Bundle\GuzzleBundle\EightPointsGuzzleBundle::class => ['all' => true],
+];
+```
+
+Configure a guzzle client: 
+
+```yaml
+# in config/eight_points_guzzle.yaml
+eight_points_guzzle:
+    clients:
+        api_kong:
+            # The admin base url, port included ; it will be defined later
+            base_url: '%kong_user.host%'
+            options:
+                headers:
+                    Accept: 'application/json'
+                    Content-type: 'application/json'
+```
+
+Update your security config:
+
+```yaml
+# in config/security.yml
+security:
+    providers:
+        # add this provider
+        kong_user:
+            id: Adaniloff\KongUserBundle\Security\KongUserProvider
+
+    firewalls:
+        main:
+            guard:
+                # add this authenticator 
+                authenticators:
+                    - Adaniloff\KongUserBundle\Security\KongAuthenticator
+```
+
+And add the bundle default configuration: 
+
+```yaml
+# in config/adaniloff_kong_user.yaml
+adaniloff_kong_user:
+    kong_host:
+        url: "http://localhost:8000"
+    auth:
+        type: "key-auths"
+```
+
+#### Symfony 3.4
 
 Then follow these steps: 
 
@@ -18,8 +78,9 @@ Then follow these steps:
 <?php
 /** In AppKernel */
 $bundles = [
-    // add the following line
+    // add the following lines, in that order
     new \Adaniloff\KongUserBundle\AdaniloffKongUserBundle(),
+    new \EightPoints\Bundle\GuzzleBundle\EightPointsGuzzleBundle(),
 ];
 ```
 
@@ -59,6 +120,7 @@ security:
 And add the bundle default configuration: 
 
 ```yaml
+# in app/config/config.yml
 adaniloff_kong_user:
     kong_host:
         url: "http://localhost:8000"
@@ -66,7 +128,9 @@ adaniloff_kong_user:
         type: "key-auths"
 ```
 
-You can make a good usage of `php bin/console config:dump-reference adaniloff_kong_user` to understand the configuration !
+## Ready ?
+
+You can make a good usage of `php bin/console config:dump-reference adaniloff_kong_user` to understand the configuration parameters !
 
 ## Example 
 
